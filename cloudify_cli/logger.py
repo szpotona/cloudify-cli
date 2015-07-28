@@ -23,7 +23,6 @@ import warnings
 
 import yaml
 import colorama
-from requests.packages.urllib3.exceptions import InsecurePlatformWarning
 
 from cloudify import logs
 from cloudify_cli.config import logger_config
