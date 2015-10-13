@@ -265,11 +265,9 @@ def read_manager_deployment_dump_if_needed(manager_deployment_dump):
 def _upload_provider_context(remote_agents_private_key_path, fabric_env,
                              manager_node, manager_node_instance,
                              provider_context=None, update_context=False):
-    provider_context = provider_context or {}
-    cloudify_configuration = manager_node.properties['cloudify']
-    cloudify_configuration['cloudify_agent']['agent_key_path'] = \
+    provider_context = provider_context or {'cloudify': {'cloudify_agent': {}}}
+    provider_context['cloudify']['cloudify_agent']['agent_key_path'] = \
         remote_agents_private_key_path
-    provider_context['cloudify'] = cloudify_configuration
     manager_node_instance.runtime_properties['manager_provider_context'] = \
         provider_context
 
@@ -277,10 +275,11 @@ def _upload_provider_context(remote_agents_private_key_path, fabric_env,
     # and then calling teardown or recover. Anyway, this code will only live
     # until we implement the fuller feature of uploading manager blueprint
     # deployments to the manager.
-    cloudify_configuration['manager_deployment'] = \
+    provider_context['cloudify']['manager_deployment'] = \
         _dump_manager_deployment(manager_node_instance)
 
     remote_provider_context_file = '/tmp/provider-context.json'
+
     provider_context_json_file = StringIO()
     full_provider_context = {
         'name': 'provider',
