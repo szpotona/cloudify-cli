@@ -6,7 +6,6 @@ machine:
     TOX_ENV: py26
   python:
     version: 2.7.6
-    version: 2.6.8
 
 test:
   pre:
