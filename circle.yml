@@ -3,13 +3,12 @@ machine:
     TOX_ENV: docs
     TOX_ENV: flake8
     TOX_ENV: py27
-    TOX_ENV: py26
   python:
     version: 2.7.6
 
 test:
   pre:
-    - pip install tox==1.6.1
+    - pip install tox
   override:
     - tox -e $TOX_ENV
 
