@@ -4,7 +4,7 @@ machine:
     TOX_ENV: flake8
     TOX_ENV: py27
   python:
-    version: 2.7.6
+    version: 2.7
 
 test:
   pre:
